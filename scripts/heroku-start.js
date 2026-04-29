@@ -4,7 +4,7 @@
 // CA bundle, so sslmode=require fails verification. sslmode=no-verify
 // keeps the connection encrypted but skips cert chain validation.
 
-const { spawn } = require('child_process');
+import { spawn } from 'child_process';
 
 const url = process.env.DATABASE_URL;
 if (url && !url.includes('sslmode=')) {
