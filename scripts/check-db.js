@@ -1,3 +1,9 @@
+// Heroku Postgres SSL fix — must run before Prisma initializes
+if (process.env.DATABASE_URL && !process.env.DATABASE_URL.includes('sslmode=')) {
+  const sep = process.env.DATABASE_URL.includes('?') ? '&' : '?';
+  process.env.DATABASE_URL = `${process.env.DATABASE_URL}${sep}sslmode=no-verify`;
+}
+
 /* eslint-disable no-console */
 import 'dotenv/config';
 import { execSync } from 'node:child_process';
